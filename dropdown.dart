@@ -1,35 +1,56 @@
 import 'package:flutter/material.dart';
-class CommonDropdown<T> extends StatefulWidget
-{
-  final List<T> items;
-  final T? value;
-  final String Function(T?) itemToString;
-  final void Function(T?) onChanged;
-  CommonDropdown({super.key,
-    required this.items,
-    required this.value,
-    required this.itemToString,
-    required this.onChanged,
-  });
+class DropDownWidget extends StatefulWidget {
+  final double? width;
+  final Widget? trailingIcon;
+  final initialSelection;
+  final ValueChanged<String?>? onSelected;
+  final List<DropdownMenuEntry<String>> dropdownMenuEntries;
+  final InputDecorationTheme? inputDecorationTheme;
+  final String? hintText;
+  final TextStyle? textStyle;
+
+
+
+
+
+  // const samleCode({super.key, this.width, this.trailingIcon, this.initialSelection, this.onSelected, required this.dropdownMenuEntries,});
+  const DropDownWidget({
+    Key? key,
+      required this.width,
+     required this.trailingIcon,
+     required this.initialSelection ,
+    required this.onSelected,
+    required this.dropdownMenuEntries,
+    required this.inputDecorationTheme,
+    required this.hintText,
+    required this.textStyle,
+
+  }) : super(key: key);
+
+
   @override
-  _CommonDropdownState<T> createState() => _CommonDropdownState<T>();
+  State<DropDownWidget> createState() => _DropDownWidgetState();
 }
-class _CommonDropdownState<T> extends State<CommonDropdown<T>>
-{
+
+class _DropDownWidgetState extends State<DropDownWidget> {
+String accountValue = '';
+bool accountarrow = false;
+
+
+
   @override
-  Widget build(BuildContext context)
-  {
-    return DropdownButton<T>(
-      value: widget.value,
-      items: widget.items
-          .map(
-            (item) => DropdownMenuItem<T>(
-              value: item,
-              child: Text(widget.itemToString(item)),
-            ),
-      )
-          .toList(),
-      onChanged: widget.onChanged,
+  Widget build(BuildContext context) {
+
+    return  DropdownMenu<String>(
+      dropdownMenuEntries: widget.dropdownMenuEntries,
+      onSelected: widget.onSelected,
+      width: widget.width,
+      trailingIcon: widget.trailingIcon,
+      initialSelection: widget.initialSelection,
+      hintText: widget.hintText,
+      textStyle: widget.textStyle,
+
+
     );
   }
 }
