@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class CustomSwitch extends StatefulWidget {
   final bool value;
+  final bool isDarkMode;
   final ValueChanged<bool>? onChanged;
   final Color? activeColor;
 
   const CustomSwitch({
-    Key? key, // Add the missing key parameter
+    Key? key,
     required this.onChanged,
     required this.value,
+    required this.isDarkMode ,
     this.activeColor,
   }) : super(key: key);
 
@@ -22,7 +24,7 @@ class _CustomSwitchState extends State<CustomSwitch> {
     return Switch(
       activeColor: widget.activeColor,
       value: widget.value,
-      onChanged: widget.onChanged
+      onChanged: widget.onChanged,
     );
   }
 }
